@@ -41,14 +41,8 @@ namespace NumberGuesser
                     //Make sure its a number
                     if (!int.TryParse(input, out guess))
                     {
-                        //change the text color
-                        Console.ForegroundColor = ConsoleColor.Red;
-
-                        //tell user its not a number
-                        Console.WriteLine("Please an actual number..");
-
-                        //reset text color
-                        Console.ResetColor();
+                        //print error message
+                        PrintColorMessage(ConsoleColor.Red, "Please use an actual number..");
 
                         //keep going
                         continue;
@@ -60,26 +54,12 @@ namespace NumberGuesser
                     //match guess to correctNumber
                     if (guess != correctNumber)
                     {
-                        //change the text color
-                        Console.ForegroundColor = ConsoleColor.Red;
-
-                        //tell user its wrong number
-                        Console.WriteLine("Wrong Number , Please try again ..");
-
-                        //reset text color
-                        Console.ResetColor();
+                        PrintColorMessage(ConsoleColor.Red, "You are wrong ,please enter correct number..");
                     }
                 }
 
                 //output success message
-                //change the text color
-                Console.ForegroundColor = ConsoleColor.Yellow;
-
-                //tell user its the right number
-                Console.WriteLine("You are Correct !!!");
-
-                //reset text color
-                Console.ResetColor();
+                PrintColorMessage(ConsoleColor.Yellow, "You are correct.");
 
                 //ask to play again
                 Console.WriteLine("Play again? [Y or N]");
@@ -121,7 +101,7 @@ namespace NumberGuesser
             Console.ResetColor();
         }
         //ask users name and greet 
-        static void GreetUser()
+        static void GreetUsers()
         {
             //ask users name
             Console.WriteLine("What is your name?");
@@ -130,6 +110,19 @@ namespace NumberGuesser
             string inputName = Console.ReadLine();
 
             Console.WriteLine("Hello {0} , let's play a game ... ", inputName);
+        }
+
+        //print color message
+        static void PrintColorMessage(ConsoleColor color,string message)
+        {
+            //change the text color
+            Console.ForegroundColor = color;
+
+            //tell user its wrong number
+            Console.WriteLine(message);
+
+            //reset text color
+            Console.ResetColor();
         }
     }
 }
